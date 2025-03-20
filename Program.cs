@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using TECH_Academy_of_Programming.Data;
 using TECH_Academy_of_Programming.Helper;
+using TECH_Academy_of_Programming.Infrastructure;
 using TECH_Academy_of_Programming.Interfaces;
 using TECH_Academy_of_Programming.Models;
 using TECH_Academy_of_Programming.Repositories;
@@ -55,6 +56,9 @@ builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUsersRepo, UsersRepo>();
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
@@ -87,13 +91,13 @@ builder.Services.AddSwaggerGen(option =>
 
 var app = builder.Build();
 
-//Seed the database with initial data if empty
-// using (var scope = app.Services.CreateScope())
-// {
-//     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-//     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-//     await DbInitializer.SeedUsersAndRolesAsync(userManager, roleManager);
-// };
+// Seed the database with initial data if empty
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    await DbInitializer.SeedUsersAndRolesAsync(userManager, roleManager);
+};
 
 if (app.Environment.IsDevelopment())
 {
@@ -105,6 +109,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseExceptionHandler();
 
 app.MapControllers();
 app.Run();

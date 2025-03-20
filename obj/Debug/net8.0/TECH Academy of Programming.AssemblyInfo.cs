@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TECH Academy of Programming")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be3d11ea192252d33b45bf5af3a40d09df5c9766")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e27f83ef96d64de1874f0d39cc3ed23a7f410986")]
 [assembly: System.Reflection.AssemblyProductAttribute("TECH Academy of Programming")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TECH Academy of Programming")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

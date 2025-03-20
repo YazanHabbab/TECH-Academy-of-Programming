@@ -23,7 +23,8 @@ namespace TECH_Academy_of_Programming.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(201, Type = typeof(string))]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> register([FromForm] UserRegisterModel user)
         {
             if (!ModelState.IsValid)
@@ -31,14 +32,16 @@ namespace TECH_Academy_of_Programming.Controllers
 
             var result = await _userRepository.register(user);
 
-            if(!result.Succeeded)
-            return BadRequest(result.Message);
+            if (!result.Succeeded)
+                return BadRequest(result.Message);
 
             return Ok(result.Message);
         }
 
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(AuthModel))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public async Task<IActionResult> login([FromForm] UserLoginModel user)
         {
             if (!ModelState.IsValid)
@@ -53,8 +56,12 @@ namespace TECH_Academy_of_Programming.Controllers
         }
 
         [Authorize]
-        [HttpGet("id")]
+        [HttpGet]
+        [Route("{id}")]
         [ProducesResponseType(200, Type = typeof(User))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> getProfile(string ID)
         {
             if (!ModelState.IsValid)
@@ -64,16 +71,19 @@ namespace TECH_Academy_of_Programming.Controllers
 
             if (user is null)
             {
-                return NotFound();
+                return NotFound("The user is not found.");
             }
 
             return Ok(user);
         }
 
         [Authorize]
-        [HttpPut("id")]
+        [HttpPut]
+        [Route("{id}")]
         [ProducesResponseType(200, Type = typeof(UpdateResult))]
-        public async Task<IActionResult> UpdateUser(string ID, [FromForm] UpdatedUserModel user)
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> updateUser(string ID, [FromForm] UpdatedUserModel user)
         {
             if (!ModelState.IsValid)
             {
@@ -91,8 +101,11 @@ namespace TECH_Academy_of_Programming.Controllers
         }
 
         [Authorize]
-        [HttpDelete("id")]
+        [HttpDelete]
+        [Route("{id}")]
         [ProducesResponseType(200, Type = typeof(DeleteResult))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public async Task<IActionResult> DeleteUser(string ID)
         {
             var result = await _userRepository.delete(ID);
@@ -108,6 +121,10 @@ namespace TECH_Academy_of_Programming.Controllers
         [Authorize(Roles = UserRoles.Admin)]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<User>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> getUsers(int page)
         {
             if (!ModelState.IsValid)
@@ -117,7 +134,7 @@ namespace TECH_Academy_of_Programming.Controllers
 
             if (!users.Any())
             {
-                return NotFound();
+                return NotFound("No users were found.");
             }
 
             return Ok(users);
