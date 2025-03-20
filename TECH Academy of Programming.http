@@ -1,6 +1,0 @@
-@TECH_Academy_of_Programming_HostAddress = http://localhost:5194
-
-GET {{TECH_Academy_of_Programming_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
