@@ -18,3 +18,5 @@ This is WebAPI application to manage users (Register, Login etc...) built with .
 - Register endpoint will create a user and add it to user role by default.
 - getUsers endpoint has pagination and can take two numbers (size for number of users to be returned, page for the page number).
 - getProfile endpoint will take a Guid which represents user id and returns the specific user data.
+- For the admin use you need to login using admin credentials (Username: "App Admin", Password: "admin123").
+- All the seeded data to the database can be found in a file called DbInitializer found in Helper folder.
