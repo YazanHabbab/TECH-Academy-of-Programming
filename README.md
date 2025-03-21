@@ -5,11 +5,10 @@ This is WebAPI application to manage users (Register, Login etc...) built with .
 ## Setting up the project
 1. Open the app in **Visual Studio** or **Visual Studio Code**.
 2. Run command **dotnet restore** to download and use all the packages needed to run the app.
-3. Run command **dotnet ef migrations add "Initial"** to apply migrations for database creation.
-4. Run command **dotnet ef database update** to create a database locally with the name **TAOP_DB**.
-5. Run the app.
-6. After first run of the app it will seed the database with some users data.
-7. You can now use the API endpoints.
+3. Run command **dotnet ef database update** to create a database locally with the name **TAOP_DB**.
+4. Run the app.
+5. After first run of the app it will seed the database with some users data.
+6. You can now use the API endpoints.
 
 ## Information about the app
 - There are 10 records of user data and two records of user roles data (Admin, User) in the database.
