@@ -2,9 +2,7 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TECH Academy of Programming", "Tech Academy of Programming\TECH Academy of Programming.csproj", "{DBB34E67-E4A0-C078-6CDA-2B8FE9765412}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tech Academy of Programming.Tests", "Tech Academy of Programming.Tests\Tech Academy of Programming.Tests.csproj", "{D7BC70E6-3952-4A48-A43F-0E8293167552}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TECH Academy of Programming", "TECH Academy of Programming.csproj", "{DBB34E67-E4A0-C078-6CDA-2B8FE9765412}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
